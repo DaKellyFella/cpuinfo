@@ -10,10 +10,10 @@ SET(CPUINFO_LIBRARY_TYPE "default" CACHE STRING "Type of cpuinfo library (shared
 SET_PROPERTY(CACHE CPUINFO_LIBRARY_TYPE PROPERTY STRINGS default static shared)
 SET(CPUINFO_RUNTIME_TYPE "default" CACHE STRING "Type of runtime library (shared, static, or default) to use")
 SET_PROPERTY(CACHE CPUINFO_RUNTIME_TYPE PROPERTY STRINGS default static shared)
-OPTION(CPUINFO_BUILD_TOOLS "Build command-line tools" ON)
-OPTION(CPUINFO_BUILD_UNIT_TESTS "Build cpuinfo unit tests" ON)
-OPTION(CPUINFO_BUILD_MOCK_TESTS "Build cpuinfo mock tests" ON)
-OPTION(CPUINFO_BUILD_BENCHMARKS "Build cpuinfo micro-benchmarks" ON)
+OPTION(CPUINFO_BUILD_TOOLS "Build command-line tools" OFF)
+OPTION(CPUINFO_BUILD_UNIT_TESTS "Build cpuinfo unit tests" OFF)
+OPTION(CPUINFO_BUILD_MOCK_TESTS "Build cpuinfo mock tests" OFF)
+OPTION(CPUINFO_BUILD_BENCHMARKS "Build cpuinfo micro-benchmarks" OFF)
 
 # ---[ CMake options
 IF(CPUINFO_BUILD_UNIT_TESTS OR CPUINFO_BUILD_MOCK_TESTS)
@@ -117,7 +117,8 @@ ENDIF()
 # ---[ cpuinfo library
 SET(CPUINFO_SRCS
   src/init.c
-  src/api.c)
+  src/api.c
+  src/log.c)
 
 IF(CPUINFO_SUPPORTED_PLATFORM)
   IF(CMAKE_SYSTEM_PROCESSOR MATCHES "^(i686|x86_64|AMD64)$")
